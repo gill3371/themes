@@ -7,6 +7,7 @@
         <li>TOUS DROITS RÉSERVÉS</li>
       </ul>
     </nav>
+    <?php get_template_part('contact')  ?>
   </footer>
 </body>
 </html>

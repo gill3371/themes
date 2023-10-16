@@ -1,0 +1,72 @@
+@keyframes animMenuMobile {
+    from {
+		top: -100vh;
+	}
+	to {
+		top: 0px;
+	}
+}
+
+// bouton burger
+
+  #bt-burger {
+    width: 30px;
+    height: 22px;
+    position: relative;
+    cursor: pointer;
+  }
+  
+  #bt-burger span {
+    display: block;
+    position: absolute;
+    height: 2px;
+    width: 100%;
+    background: black;
+    opacity: 1;
+    left: 0;
+    transform: rotate(0deg);
+    transition: 0.2s ease-in-out;
+  }
+  
+  #bt-burger span:nth-child(1) {
+    top: 0px;
+  }
+  
+  #bt-burger span:nth-child(2),
+  #bt-burger span:nth-child(3) {
+    top: 10px;
+  }
+  
+  #bt-burger span:nth-child(4) {
+    top: 20px;
+  }
+  
+  #bt-burger.open span:nth-child(1) {
+    top: 18px;
+    width: 0%;
+    left: 50%;
+  }
+  
+  #bt-burger.open span:nth-child(2) {
+    transform: rotate(45deg);
+  }
+  
+  #bt-burger.open span:nth-child(3) {
+    transform: rotate(-45deg);
+  }
+  
+  #bt-burger.open span:nth-child(4) {
+    top: 10px;
+    width: 0%;
+    left: 50%;
+  }
+
+  @keyframes lightboxIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  

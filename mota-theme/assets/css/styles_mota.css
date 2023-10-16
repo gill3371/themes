@@ -1,0 +1,637 @@
+/*! minireset.css v0.0.6 | MIT License | github.com/jgthms/minireset.css */
+html,
+body,
+p,
+ol,
+ul,
+li,
+dl,
+dt,
+dd,
+blockquote,
+figure,
+fieldset,
+legend,
+textarea,
+pre,
+iframe,
+hr,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  padding: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: 100%;
+  font-weight: normal;
+}
+
+ul {
+  list-style: none;
+}
+
+button,
+input,
+select {
+  margin: 0;
+}
+
+button {
+  border: none;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+
+img,
+video {
+  height: auto;
+  max-width: 100%;
+}
+
+iframe {
+  border: 0;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+td,
+th {
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+button {
+  background-color: lightgray;
+  width: 270px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@keyframes animMenuMobile {
+  from {
+    top: -100vh;
+  }
+  to {
+    top: 0px;
+  }
+}
+#bt-burger {
+  width: 30px;
+  height: 22px;
+  position: relative;
+  cursor: pointer;
+}
+
+#bt-burger span {
+  display: block;
+  position: absolute;
+  height: 2px;
+  width: 100%;
+  background: black;
+  opacity: 1;
+  left: 0;
+  transform: rotate(0deg);
+  transition: 0.2s ease-in-out;
+}
+
+#bt-burger span:nth-child(1) {
+  top: 0px;
+}
+
+#bt-burger span:nth-child(2),
+#bt-burger span:nth-child(3) {
+  top: 10px;
+}
+
+#bt-burger span:nth-child(4) {
+  top: 20px;
+}
+
+#bt-burger.open span:nth-child(1) {
+  top: 18px;
+  width: 0%;
+  left: 50%;
+}
+
+#bt-burger.open span:nth-child(2) {
+  transform: rotate(45deg);
+}
+
+#bt-burger.open span:nth-child(3) {
+  transform: rotate(-45deg);
+}
+
+#bt-burger.open span:nth-child(4) {
+  top: 10px;
+  width: 0%;
+  left: 50%;
+}
+
+@keyframes lightboxIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.contactModal {
+  display: none;
+  position: fixed;
+  z-index: 99;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.7); /* Black w/ opacity */
+}
+
+.contactBox {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.contactContent {
+  position: relative;
+  background-color: white;
+  border: 5px solid black;
+}
+
+.contactLogo {
+  width: 600px;
+  max-width: unset;
+  padding-bottom: 32px;
+  padding-top: 16px;
+}
+
+.contactForm {
+  padding: 0 150px 32px 150px;
+}
+.contactForm li {
+  padding: 16px 0;
+}
+.contactForm label {
+  display: block;
+  width: 100px;
+  font-family: "Poppins", sans-serif;
+  font-weight: 300;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  padding-bottom: 3px;
+}
+.contactForm input, .contactForm textarea {
+  width: 300px;
+  border-radius: 8px;
+  border: 1px solid #B8BBC2;
+  padding: 12px;
+  outline: none;
+}
+.contactForm input {
+  height: 40px;
+}
+.contactForm textarea {
+  height: 210px;
+  resize: none;
+}
+.contactForm button {
+  width: 300px;
+  height: 50px;
+  background-color: rgba(0, 0, 0, 0.2);
+  border: unset;
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+input:focus, textarea:focus {
+  border-color: red;
+  border-width: 3px;
+}
+
+.lightbox {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.85);
+  z-index: 50;
+  animation: lightboxIn 350ms;
+  overflow: auto;
+  transition: opacity 300ms;
+}
+
+.lightbox.fadeOut {
+  opacity: 0;
+}
+
+.lightbox button {
+  opacity: 0.65;
+  transition: opacity 300ms;
+}
+.lightbox button:hover {
+  opacity: 1;
+}
+
+.prevLightbox,
+.nextLightbox {
+  background: url(../img/arrow.svg) center center/100% 100%;
+  width: 22px;
+  height: 42px;
+  position: fixed;
+  top: calc(50% - 21px);
+  cursor: pointer;
+  opacity: 0.65;
+}
+
+.prevLightbox {
+  left: 20px;
+}
+
+.nextLightbox {
+  right: 20px;
+  rotate: 180deg;
+}
+
+.closeLightbox {
+  background: url(../img/close.svg) center center/100% 100%;
+  width: 18px;
+  height: 18px;
+  position: fixed;
+  z-index: 55;
+  top: 25px;
+  right: 25px;
+  opacity: 0.65;
+}
+
+.lightboxContainer {
+  margin-left: 70px;
+  margin-right: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+.lightboxContainer img {
+  width: 100%;
+  height: auto;
+  animation: lightboxIn 350ms;
+}
+
+.lightbox_loader {
+  width: 50px;
+  height: 50px;
+  background: url(../img/loader.svg) center center/100% 100%;
+}
+
+.photoMore button {
+  margin: auto;
+  margin-bottom: 32px;
+  cursor: pointer;
+}
+
+.photoContent {
+  width: 80%;
+  margin: auto;
+}
+
+.photoBox {
+  display: flex;
+  align-items: flex-end;
+  column-gap: 16px;
+}
+
+.photoInfo {
+  width: 50%;
+  padding-bottom: 14px;
+  border-bottom: 1px solid black;
+}
+.photoInfo li {
+  padding-top: 14px;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+}
+
+.photoTitle {
+  font-size: 4.125rem;
+  line-height: 3.825rem;
+  font-style: italic;
+  text-transform: uppercase;
+}
+
+.photoImg {
+  max-width: 50%;
+  height: auto;
+}
+.photoImg img {
+  width: 100%;
+  max-height: unset;
+}
+
+.contactSection {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.photoContact {
+  width: 50%;
+  padding-right: 8px;
+  padding-top: 32px;
+  padding-bottom: 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.photoContact p {
+  font-size: 0.875rem;
+}
+.photoContact .contactButton {
+  cursor: pointer;
+}
+
+.previewBox {
+  display: flex;
+  flex-direction: column;
+}
+
+.previewImgBox {
+  position: relative;
+}
+.previewImgBox .previewImg {
+  width: 80px;
+  aspect-ratio: 1;
+  visibility: hidden;
+}
+
+.previewArrow {
+  height: 24px;
+  font-size: 24px;
+  line-height: 18px;
+  display: inline-flex;
+  justify-content: space-between;
+}
+
+.site__navigation {
+  font-size: 1rem;
+}
+
+.photoMore {
+  padding-top: 48px;
+  border-top: 1px solid black;
+}
+.photoMore p {
+  font-size: 1.125rem;
+  text-transform: uppercase;
+  padding-bottom: 24px;
+}
+.photoMore .moreButton {
+  margin: 36px auto;
+}
+
+.photoMoreBox {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  column-gap: 16px;
+  row-gap: 16px;
+  padding-bottom: 32px;
+}
+.photoMoreBox a {
+  max-width: 49%;
+}
+.photoMoreBox img {
+  display: flex;
+  aspect-ratio: 1.5;
+  object-fit: cover;
+}
+
+* {
+  font-family: "Space Mono", monospace;
+}
+
+header .nav-header {
+  margin: auto;
+  width: 80%;
+  height: 80px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+header .nav-header .top-header {
+  position: relative;
+  z-index: 5;
+  background-color: white;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 25px 0;
+}
+header .nav-header img {
+  height: 16px;
+}
+header .nav-header #bt-burger {
+  display: none;
+}
+header .nav-header nav ul {
+  display: flex;
+  column-gap: 2rem;
+}
+header .nav-header nav ul li {
+  font-size: 1rem;
+  width: max-content;
+}
+header .nav-header nav ul li a {
+  text-transform: uppercase;
+}
+@media screen and (max-width: 700px) {
+  header .nav-header {
+    height: 72px;
+    width: unset;
+  }
+  header .nav-header img {
+    padding-left: 30px;
+  }
+  header .nav-header #bt-burger {
+    display: block;
+    position: absolute;
+    right: 30px;
+  }
+  header .nav-header #bt-burger .line {
+    display: block;
+    height: 3px;
+    margin-bottom: 4px;
+    width: 100%;
+    background-color: black;
+  }
+  header .nav-header nav {
+    display: none;
+  }
+  header .nav-header nav.open {
+    position: absolute;
+    top: 72px;
+    animation: animMenuMobile 500ms ease-out forwards;
+    width: 100%;
+    height: 100vh;
+    background-color: #E00000;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  header .nav-header nav.open ul {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 2rem;
+  }
+  header .nav-header nav.open ul li {
+    font-size: 3rem;
+    font-weight: 400;
+    color: white;
+  }
+}
+
+footer {
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-top: 1px solid black;
+}
+footer nav ul {
+  display: flex;
+  column-gap: 2rem;
+  list-style-type: none;
+}
+@media screen and (max-width: 700px) {
+  footer nav ul {
+    flex-direction: column;
+    align-items: center;
+    row-gap: 2rem;
+  }
+}
+footer nav ul li {
+  font-size: 1rem;
+}
+@media screen and (max-width: 700px) {
+  footer {
+    height: auto;
+  }
+}
+
+.frontpContainer button {
+  margin: auto;
+  margin-bottom: 32px;
+  cursor: pointer;
+}
+
+.photoHero {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.photoHero img {
+  width: 100%;
+  height: 700px;
+  object-fit: cover;
+}
+.photoHero h2 {
+  position: absolute;
+  max-width: 90%;
+  font-size: 6rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  text-align: center;
+  line-height: 5rem;
+  -webkit-text-stroke: 3px white;
+  -webkit-text-fill-color: transparent;
+}
+
+.filterContainer {
+  width: 80%;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  padding: 32px 0;
+}
+
+.selectBox {
+  border: 1px solid black;
+  border-radius: 3px;
+  padding-right: 8px;
+  width: 100%;
+}
+
+.filterCol1, .filterCol2 {
+  display: flex;
+  justify-content: space-between;
+  column-gap: 16px;
+}
+.filterCol1 select, .filterCol2 select {
+  width: 100%;
+  padding: 8px;
+  font-size: 0.875rem;
+  font-family: "Poppins", sans-serif;
+  font-weight: 300;
+  text-transform: uppercase;
+  border: none;
+}
+.filterCol1 select:focus-visible, .filterCol2 select:focus-visible {
+  outline: none;
+}
+
+.filterCol1 {
+  width: calc(50% - 8px);
+}
+
+.filterCol2 {
+  width: calc(25% - 16px);
+}
+
+.galerieContainer {
+  width: 80%;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 16px;
+  row-gap: 16px;
+  padding-bottom: 32px;
+}
+.galerieContainer a {
+  display: flex;
+  width: calc(50% - 8px);
+}
+.galerieContainer img {
+  aspect-ratio: 1;
+  object-fit: cover;
+}
+
+/*# sourceMappingURL=styles_mota.css.map */

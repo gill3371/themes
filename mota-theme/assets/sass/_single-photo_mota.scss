@@ -1,0 +1,127 @@
+.photoMore {
+    button {
+        margin: auto;
+        margin-bottom: 32px;
+        cursor: pointer;
+    }
+}
+
+.photoContent {
+    width: 80%;
+    margin: auto;
+}
+
+.photoBox {
+    display: flex;
+    align-items: flex-end;
+    column-gap: 16px;
+}
+
+.photoInfo {
+    width: 50%;
+    padding-bottom: 14px;
+    border-bottom: 1px solid black;
+    li {
+        padding-top: 14px;
+        font-size: 0.875rem;
+        text-transform: uppercase;
+    
+    }
+}
+
+.photoTitle {
+    // width: 90%;
+    font-size: 4.125rem;
+    line-height: 3.825rem;
+    font-style: italic;
+    text-transform: uppercase;
+}
+
+.photoImg {
+    max-width: 50%;
+    height: auto;
+    img {
+        width: 100%;
+        max-height: unset;
+        // height: 100%;
+    }
+}
+
+.contactSection {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.photoContact {
+    width: 50%;
+    padding-right: 8px;
+    padding-top: 32px;
+    padding-bottom: 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    p {
+        font-size: 0.875rem;
+    }
+    .contactButton {
+        cursor: pointer;
+    }
+}
+
+.previewBox {
+    display: flex;
+    flex-direction: column;
+}
+.previewImgBox {
+    position: relative;
+    .previewImg {
+        width: 80px;
+        aspect-ratio: 1;
+        visibility: hidden;
+    }
+}
+
+.previewArrow {
+    height: 24px;
+    font-size: 24px;
+    line-height: 18px;
+    display: inline-flex;
+    justify-content: space-between;
+}
+
+
+
+.site__navigation {
+    font-size: 1rem;
+}
+
+.photoMore {
+    padding-top: 48px;
+    border-top: 1px solid black;
+    p {
+        font-size: 1.125rem;
+        text-transform: uppercase;
+        padding-bottom: 24px;
+    }
+    .moreButton {
+        margin: 36px auto;
+    }
+}
+
+.photoMoreBox {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    column-gap: 16px;
+    row-gap: 16px;
+    padding-bottom: 32px;
+    a {
+        max-width: 49%;
+    }
+    img {
+        display: flex;
+        aspect-ratio: 1.5;
+        object-fit: cover;
+    }
+}

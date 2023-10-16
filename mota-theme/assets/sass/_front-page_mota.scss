@@ -1,0 +1,88 @@
+.frontpContainer {
+    button {
+        margin: auto;
+        margin-bottom: 32px;
+        cursor: pointer;
+    }
+}
+
+.photoHero {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    img {
+        width: 100%;
+        height: 700px;
+        object-fit: cover;
+    }
+    h2 {
+        position: absolute;
+        max-width: 90%;
+        font-size: 6rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        text-align: center;
+        line-height: 5rem;
+        -webkit-text-stroke: 3px white;
+        -webkit-text-fill-color: transparent;
+    }
+}
+
+.filterContainer {
+    width: 80%;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    padding: 32px 0;
+}
+
+.selectBox {
+    border: 1px solid black;
+    border-radius: 3px;
+    padding-right: 8px;
+    width: 100%;
+}
+
+.filterCol1, .filterCol2 {
+    display: flex;
+    justify-content: space-between;
+    column-gap: 16px;
+    select {
+        width: 100%;
+        padding: 8px;
+        font-size: 0.875rem;
+        font-family: 'Poppins', sans-serif;
+        font-weight: 300;
+        text-transform: uppercase;
+        border: none;
+        }
+    select:focus-visible {
+        outline: none;
+    }
+}
+
+.filterCol1 {
+    width: calc(50% - 8px);
+}
+
+.filterCol2 {
+    width: calc(25% - 16px);
+}
+
+.galerieContainer {
+    width: 80%;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 16px;
+    row-gap: 16px;
+    padding-bottom: 32px;
+    a {
+        display: flex;
+        width: calc(50% - 8px);
+    }
+    img {
+        aspect-ratio: 1;
+        object-fit: cover;
+    }
+}
