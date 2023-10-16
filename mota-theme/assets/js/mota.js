@@ -188,10 +188,10 @@ try {
   const prevImg = document.querySelector(".prevImg");
 
   prevDiv.onmouseenter = function () {
-    prevImg.style.visibility = "visible";
+    prevImg.classList.add('visible');
   };
   prevDiv.onmouseleave = function () {
-    prevImg.style.visibility = "hidden";
+    prevImg.classList.remove('visible');
   };
 
   // Affiche de la preview du post suivant dans single-photo.php
@@ -199,10 +199,10 @@ try {
   const nextImg = document.querySelector(".nextImg");
 
   nextDiv.onmouseenter = function () {
-    nextImg.style.visibility = "visible";
+    nextImg.classList.add('visible');
   };
   nextDiv.onmouseleave = function () {
-    nextImg.style.visibility = "hidden";
+    nextImg.classList.remove('visible');
   };
 } catch (error) {}
 

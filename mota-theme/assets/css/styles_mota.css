@@ -359,6 +359,7 @@ input:focus, textarea:focus {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  height: 118px;
 }
 
 .photoContact {
@@ -384,11 +385,20 @@ input:focus, textarea:focus {
 
 .previewImgBox {
   position: relative;
+  width: 80px;
+  min-height: 80px;
+  overflow: hidden;
 }
 .previewImgBox .previewImg {
-  width: 80px;
+  position: absolute;
   aspect-ratio: 1;
-  visibility: hidden;
+  transform: translateY(90px);
+  opacity: 0;
+  transition: transform 250ms, opacity 750ms;
+}
+.previewImgBox .visible {
+  transform: translateY(0);
+  opacity: 1;
 }
 
 .previewArrow {
