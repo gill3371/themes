@@ -41,3 +41,58 @@ function register_menus()
 }
 add_action('init', 'register_menus');
 
+// Création du custom-post-type
+function mota_register_post_types()
+{
+
+    // CPT Portfolio
+    $labels = array(
+        'name' => 'photo',
+        'all_items' => 'Tous les photos',
+        'singular_name' => 'photo',
+        'add_new_item' => 'Ajouter une photo',
+        'edit_item' => 'Modifier une photo',
+        'menu_name' => 'Photo'
+    );
+
+    $args = array(
+        'labels' => $labels,
+        'public' => true,
+        'show_in_rest' => true,
+        'has_archive' => true,
+        'supports' => array('title', 'editor', 'thumbnail'),
+        'menu_position' => 5,
+        'menu_icon' => 'dashicons-camera',
+    );
+
+    register_post_type('photo', $args);
+
+
+// Création de taxonomie;
+
+function create_taxonomy($taxonomy_slug, $singular_name, $plural_name)
+{
+    $labels = array(
+        'name' => $plural_name,
+        'new_item_name' => 'Ajouter un(e) ' . $singular_name,
+        'parent_item' => $singular_name . ' parent',
+    );
+
+    $args = array(
+        'labels' => $labels,
+        'public' => true,
+        'show_in_rest' => true,
+        'hierarchical' => true,
+    );
+
+    register_taxonomy($taxonomy_slug, 'photo', $args);
+}
+
+// Enregistrement de la taxonomie "Catégorie"
+create_taxonomy('categorie', 'Catégorie', 'Catégories');
+
+// Enregistrement de la taxonomie "Format"
+create_taxonomy('format', 'Format', 'Formats');
+}
+
+add_action('init', 'mota_register_post_types');
