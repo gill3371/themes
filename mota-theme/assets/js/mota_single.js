@@ -63,7 +63,6 @@ window.onclick = function (event) {
       postid: allImagesButton.getAttribute("data-postid"),
       catid: allImagesButton.getAttribute("data-catid"),
     };
-    console.log('ajaxurl=',ajaxurl,'data=',data);
   
     fetch(ajaxurl, {
       method: "POST",
@@ -75,7 +74,6 @@ window.onclick = function (event) {
     })
       .then((codeHTML) => codeHTML.json())
       .then((codeHTML) => {
-        console.log(codeHTML);
         const photoMoreDiv = document.querySelector(".photoMoreBox");
         photoMoreDiv.innerHTML = codeHTML;
         const loadmoresingleButton = document.querySelector(".load-more-single");

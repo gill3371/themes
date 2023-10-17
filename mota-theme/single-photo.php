@@ -13,7 +13,8 @@
 						<li>Année : <?php the_time('Y'); ?></li>
 					</ul>
 				</div>
-				<div class="photoImg">
+				
+				<div class="photoImg" data-url="<?php echo get_the_post_thumbnail_url(get_the_ID(), 'full'); ?>">
 					<?php the_post_thumbnail('large'); ?>
 				</div>
 			</div>
@@ -73,9 +74,9 @@
 					$loop = new WP_Query($args);
 
 					while ($loop->have_posts()) : $loop->the_post();
-						ob_start(); // Commence à mettre en mémoire tampon la sortie.
+						ob_start();
 						include 'template_parts/photo_block.php';
-						$codeHTML .= ob_get_clean(); // Récupère la sortie tamponnée et l'ajoute à votre variable.
+						$codeHTML .= ob_get_clean();
 					endwhile;
 
 					wp_reset_postdata();

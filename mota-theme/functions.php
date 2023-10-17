@@ -146,9 +146,9 @@ function mota_load_more_single()
     $loop = new WP_Query($args);
 
     while ($loop->have_posts()) : $loop->the_post();
-        ob_start(); // Commence à mettre en mémoire tampon la sortie.
+        ob_start();
         include 'template_parts/photo_block.php';
-        $codeHTML .= ob_get_clean(); // Récupère la sortie tamponnée et l'ajoute à votre variable.
+        $codeHTML .= ob_get_clean();
     endwhile;
 
 

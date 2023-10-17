@@ -353,6 +353,10 @@ input:focus, textarea:focus {
 .photoImg img {
   width: 100%;
   max-height: unset;
+  display: flex;
+}
+.photoImg:hover {
+  cursor: pointer;
 }
 
 .contactSection {
@@ -453,7 +457,7 @@ input:focus, textarea:focus {
   right: 0;
   height: 0;
   overflow: hidden;
-  transition: height 350ms ease-in-out;
+  transition: height 250ms ease-in-out;
 }
 .photoMoreBox .photoM .photo_card span {
   display: inline-block;
@@ -487,6 +491,9 @@ input:focus, textarea:focus {
   background: black url(../img/box.svg) center center/50% 50% no-repeat;
   top: 16px;
   right: 16px;
+}
+.photoMoreBox .photoM .photo_card .card_lightbox:hover {
+  cursor: pointer;
 }
 .photoMoreBox .photoM:hover .photo_card {
   height: 100%;

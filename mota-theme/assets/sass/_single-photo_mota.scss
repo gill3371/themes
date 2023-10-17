@@ -43,7 +43,10 @@
     img {
         width: 100%;
         max-height: unset;
-        // height: 100%;
+        display: flex;
+    }
+    &:hover {
+        cursor: pointer;
     }
 }
 
@@ -147,7 +150,7 @@
             right: 0;
             height: 0;
             overflow:hidden;
-            transition: height 350ms ease-in-out;
+            transition: height 250ms ease-in-out;
             span {
                 display:inline-block;
                 text-align:center;
@@ -180,6 +183,9 @@
                 background: black url(../img/box.svg) center center / 50% 50% no-repeat;
                 top: 16px;
                 right: 16px;
+                &:hover {
+                    cursor: pointer;
+                }
               }
               
         }
