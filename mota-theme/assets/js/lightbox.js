@@ -5,7 +5,7 @@
 class Lightbox {
 
     static init () {
-        const links = document.querySelectorAll(".photoImg img")
+        const links = document.querySelectorAll(".photoImg img, .card_lightbox")
         links.forEach(link => link.addEventListener('click', e => {
             e.preventDefault();
             new Lightbox(e.currentTarget.getAttribute('src'));

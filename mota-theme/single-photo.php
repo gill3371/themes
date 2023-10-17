@@ -19,7 +19,7 @@
 			</div>
 			<section class="contactSection">
 				<div class="photoContact">
-					<p>Cette photo vous intéresse ?</p>
+					<p>Cette photo vous intéresse&nbsp?</p>
 					<button class="contactButton">Contact</button>
 				</div>
 				<div class="previewBox">
@@ -27,13 +27,13 @@
 						<?php
 						if (get_previous_post()) {
 							$prev_id = get_previous_post()->ID;
-							echo '<img class="previewImg prevImg" src="' . get_the_post_thumbnail_url($prev_id, 'large').'">';
+							echo '<img class="previewImg prevImg" src="' . get_the_post_thumbnail_url($prev_id, 'large') . '">';
 						}
 						?>
 						<?php
 						if (get_next_post()) {
 							$next_id = get_next_post()->ID;
-							echo '<img class="previewImg nextImg" src="' . get_the_post_thumbnail_url($next_id, 'large').'">';
+							echo '<img class="previewImg nextImg" src="' . get_the_post_thumbnail_url($next_id, 'large') . '">';
 						}
 						?>
 					</div>
@@ -51,83 +51,50 @@
 				<p>Vous aimerez aussi</p>
 				<div class="photoMoreBox">
 					<?php
-						$postIDInit = get_the_ID();
-						$postCatInit = get_the_terms(get_the_ID(), 'categorie' );
-						$catIdInit = $postCatInit[0]->term_id;
-						$args = array(
-							'post_type' => 'photo',
-							'posts_per_page' => 2,
-							'orderby' => 'title',
-							'order' => 'ASC',
-							'post__not_in' => array( $postIDInit ),
-							'tax_query' => array(
-								array (
-									'taxonomy' => 'categorie',
-									'field' => 'term_id',
-									'terms' => array( $catIdInit ),
-									)	
-									)
-						);
+					$postCatInit = get_the_terms(get_the_ID(), 'categorie');
+					$catIdInit = $postCatInit[0]->term_id;
+					$args = array(
+						'post_type' => 'photo',
+						'posts_per_page' => 2,
+						'orderby' => 'title',
+						'order' => 'ASC',
+						'post__not_in' => array(get_the_ID()),
+						'tax_query' => array(
+							array(
+								'taxonomy' => 'categorie',
+								'field' => 'term_id',
+								'terms' => array($catIdInit),
+							)
+						)
+					);
 
-						$loop = new WP_Query($args);
+					$codeHTML = '';
 
-						while ($loop->have_posts()) : $loop->the_post();
-							$link = get_the_permalink();
-							echo '<a href="' . $link . '">';
-							the_post_thumbnail();
-							echo '</a>';
-						endwhile;
+					$loop = new WP_Query($args);
 
-						wp_reset_postdata();
+					while ($loop->have_posts()) : $loop->the_post();
+						ob_start(); // Commence à mettre en mémoire tampon la sortie.
+						include 'template_parts/photo_block.php';
+						$codeHTML .= ob_get_clean(); // Récupère la sortie tamponnée et l'ajoute à votre variable.
+					endwhile;
+
+					wp_reset_postdata();
+					echo $codeHTML;
 					?>
-					<?php
-						$postIDStorage = get_the_ID();
-						$postCatStorage = get_the_terms(get_the_ID(), 'categorie' );
-						$catIdStorage = $postCatStorage[0]->term_id;
-						$args = array(
-							'post_type' => 'photo',
-							'posts_per_page' => -1,
-							'orderby' => 'title',
-							'order' => 'ASC',
-							'post__not_in' => array( $postIDStorage ),
-							'tax_query' => array(
-								array (
-									'taxonomy' => 'categorie',
-									'field' => 'term_id',
-									'terms' => array( $catIdStorage ),
-									)	
-									)
-						);
-
-						$loop = new WP_Query($args);
-						$linksArrayStorage = [];
-
-						while ($loop->have_posts()) : $loop->the_post();
-							$linkStorage = get_the_permalink();
-							array_push($linksArrayStorage, $linkStorage);
-						endwhile;
-
-						wp_reset_postdata();
-					?>
-					<script>
-						let linksStorage = <?php echo json_encode($linksArrayStorage); ?>;
-						localStorage.setItem('linksLightbox', JSON.stringify(linksStorage));
-					</script>
 				</div>
 				<button class="load-more-single"
-                data-action="mota_load_more_single"
-                data-ajaxurl="<?php echo admin_url('admin-ajax.php'); ?>"
-                data-nonce="<?php echo wp_create_nonce('mota_load_more_single'); ?>"
-					<?php
-					$postID = get_the_ID();
-					$postCat = get_the_terms(get_the_ID(), 'categorie' );
-					$catId = $postCat[0]->term_id;
-					?>
-				data-postid="<?php echo $postID ?>"
-				data-catid="<?php echo $catId ?>"
-                onclick="SingleAllImages()">
-                Toutes les photos
-            </button>
+						data-action="mota_load_more_single"
+						data-ajaxurl="<?php echo admin_url('admin-ajax.php'); ?>"
+						data-nonce="<?php echo wp_create_nonce('mota_load_more_single'); ?>"
+						<?php
+						$postCat = get_the_terms(get_the_ID(), 'categorie');
+						$catId = $postCat[0]->term_id;
+						?>
+						data-postid="<?php echo get_the_ID() ?>"
+						data-catid="<?php echo $catId ?>"
+						onclick="SingleAllImages()">
+				Toutes les photos
+				</button>
 
 			</div>
 		</div>

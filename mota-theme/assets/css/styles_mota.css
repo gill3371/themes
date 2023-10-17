@@ -434,13 +434,62 @@ input:focus, textarea:focus {
   row-gap: 16px;
   padding-bottom: 32px;
 }
-.photoMoreBox a {
+.photoMoreBox .photoM {
   max-width: 49%;
+  height: 100%;
+  position: relative;
 }
-.photoMoreBox img {
+.photoMoreBox .photoM img {
   display: flex;
   aspect-ratio: 1.5;
   object-fit: cover;
+}
+.photoMoreBox .photoM .photo_card {
+  width: 100%;
+  height: 0%;
+  background-color: rgba(0, 0, 0, 0.5);
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 0;
+  overflow: hidden;
+  transition: height 350ms ease-in-out;
+}
+.photoMoreBox .photoM .photo_card span {
+  display: inline-block;
+  text-align: center;
+  color: white;
+  text-transform: uppercase;
+  position: absolute;
+}
+.photoMoreBox .photoM .photo_card .card_ref {
+  bottom: 4px;
+  left: 16px;
+}
+.photoMoreBox .photoM .photo_card .card_cat {
+  bottom: 4px;
+  right: 16px;
+}
+.photoMoreBox .photoM .photo_card .card_info {
+  display: inline-block;
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  background: url(../img/eye.svg) center center/100% 100%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.photoMoreBox .photoM .photo_card .card_lightbox {
+  width: 35px;
+  height: 35px;
+  border-radius: 50px;
+  background: black url(../img/box.svg) center center/50% 50% no-repeat;
+  top: 16px;
+  right: 16px;
+}
+.photoMoreBox .photoM:hover .photo_card {
+  height: 100%;
 }
 
 * {
