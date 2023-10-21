@@ -298,17 +298,35 @@ input:focus, textarea:focus {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
+  position: relative;
 }
 .lightboxContainer img {
   width: 100%;
   height: auto;
   animation: lightboxIn 350ms;
+  padding-top: 50px;
 }
 
 .lightbox_loader {
   width: 50px;
   height: 50px;
   background: url(../img/loader.svg) center center/100% 100%;
+}
+
+.refLightbox, .catLightbox {
+  position: absolute;
+  bottom: -85px;
+  color: white;
+  text-transform: uppercase;
+  padding-bottom: 50px;
+}
+
+.refLightbox {
+  left: 0;
+}
+
+.catLightbox {
+  right: 0;
 }
 
 .photoMore button {
@@ -682,22 +700,9 @@ footer nav ul li {
   width: calc(25% - 16px);
 }
 
-.galerieContainer {
+.photoGallerie {
   width: 80%;
   margin: auto;
-  display: flex;
-  flex-wrap: wrap;
-  column-gap: 16px;
-  row-gap: 16px;
-  padding-bottom: 32px;
-}
-.galerieContainer a {
-  display: flex;
-  width: calc(50% - 8px);
-}
-.galerieContainer img {
-  aspect-ratio: 1;
-  object-fit: cover;
 }
 
 /*# sourceMappingURL=styles_mota.css.map */

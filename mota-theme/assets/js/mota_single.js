@@ -54,6 +54,7 @@ window.onclick = function (event) {
     nextImg.classList.remove('visible');
   };
 
+  // Récupération en AJAX du code HTML pour la partie "Toutes les photos"
   function SingleAllImages () {
     const allImagesButton = document.querySelector(".load-more-single")
     const ajaxurl = allImagesButton.getAttribute("data-ajaxurl");
@@ -64,6 +65,8 @@ window.onclick = function (event) {
       catid: allImagesButton.getAttribute("data-catid"),
     };
   
+    console.log(ajaxurl,data);
+
     fetch(ajaxurl, {
       method: "POST",
       headers: {

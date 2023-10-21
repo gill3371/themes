@@ -2,28 +2,32 @@
     @property {HTMLElement} element
 */
 class Lightbox {
+
   static init() {
-    const photoContent = document.querySelector(".photoContent");
+
+    const photoContent = document.querySelector(".photoGallerie");
 
     photoContent.addEventListener("click", function (e) {
-        if (e.target.closest(".photoImg") || e.target.matches(".card_lightbox")) {
-            e.preventDefault();
-            const photoImg = e.target.closest(".photoImg");
-            if (photoImg) {
-                new Lightbox(photoImg.getAttribute("data-url"));
-            }
-            else {
-                new Lightbox(e.target.getAttribute("data-url"));
-            }
-        }
-    });
+      if (e.target.matches(".card_lightbox")) {
+        e.preventDefault();
+        let refLightbox = e.target.parentNode;
+        refLightbox = refLightbox.querySelector(".card_ref")
+        refLightbox = refLightbox.textContent;
+        let catLightbox = e.target.parentNode;
+        catLightbox = catLightbox.querySelector(".card_cat")
+        catLightbox = catLightbox.textContent;
+        new Lightbox(e.target.getAttribute("data-url"),refLightbox,catLightbox);
+      }
+    })
   }
-
+    
   /* 
         @param (url) URL de l'image
+        @param (ref) Référence de l'image
+        @param (cat) Catégorie de l'image
      */
-  constructor(url) {
-    this.element = this.buildDOM(url);
+  constructor(url,ref,cat) {
+    this.element = this.buildDOM(url,ref,cat);
     this.loadImage(url);
     this.onKeyUp = this.onKeyUp.bind(this);
     document.body.appendChild(this.element);
@@ -71,18 +75,21 @@ class Lightbox {
         @param {string} url URL de l'image
         @return {HTMLElement} 
      */
-  buildDOM(url) {
+  buildDOM(url,ref,cat) {
     const dom = document.createElement("div");
     dom.classList.add("lightbox");
     dom.innerHTML = `
-            <button class="prevLightbox"></button>
-            <button class="nextLightbox"></button>
-            <button class="closeLightbox"></button>
-            <div class="lightboxContainer"></div>`;
+    <button class="prevLightbox"></button>
+    <button class="nextLightbox"></button>
+    <button class="closeLightbox"></button>
+    <div class="lightboxContainer">
+    <span class="refLightbox">${ref}</span>
+    <span class="catLightbox">${cat}</span>
+    </div>`;
     dom.querySelector(".closeLightbox").addEventListener("click", this.close.bind(this));
     return dom;
+    }
   }
-}
 
 Lightbox.init();
 

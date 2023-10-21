@@ -7,7 +7,7 @@
 					<h2 class="photoTitle"><?php the_title(); ?></h2>
 					<ul>
 						<li>Référence : <span class="photoRef"> <?php the_field('reference_photo') ?></span></li>
-						<li>Catégorie : <?php the_terms(get_the_ID(), 'categorie'); ?></li>
+						<li>Catégorie : <span class="photoCat"> <?php the_terms(get_the_ID(), 'categorie'); ?></span></li>
 						<li>Format : <?php the_terms(get_the_ID(), 'format'); ?></li>
 						<li>Type : <?php the_field('photo_type') ?></li>
 						<li>Année : <?php the_time('Y'); ?></li>

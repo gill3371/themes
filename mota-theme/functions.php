@@ -12,12 +12,13 @@ add_action('wp_enqueue_scripts', 'add_styles_mota');
 function add_scripts_mota()
 {
     if (is_single()) {
-        wp_enqueue_script('mota-single', get_template_directory_uri() . '/assets/js/mota_single.js');
+        wp_enqueue_script('js-mota-single', get_template_directory_uri() . '/assets/js/mota_single.js');
+        wp_enqueue_script('js-lightbox-mota-single', get_template_directory_uri() . '/assets/js/lightbox_single.js');
     }
     if (is_page()) {
-        wp_enqueue_script('mota-page', get_template_directory_uri() . '/assets/js/mota_page.js');
+        wp_enqueue_script('js-mota-page', get_template_directory_uri() . '/assets/js/mota_page.js');
+        wp_enqueue_script('js-lightbox-mota-page', get_template_directory_uri() . '/assets/js/lightbox_page.js');
     }
-    wp_enqueue_script('lightbox-mota', get_template_directory_uri() . '/assets/js/lightbox.js');
 }
 
 add_action('wp_enqueue_scripts', 'add_scripts_mota');
@@ -25,7 +26,7 @@ add_action('wp_enqueue_scripts', 'add_scripts_mota');
 // Ajout de la propriétée DEFER aux scripts 
 function add_defer_attribute($tag, $handle)
 {
-    $scripts_with_defer = ['mota-single', 'mota-page', 'lightbox-mota'];
+    $scripts_with_defer = ['js-mota-single', 'js-mota-page', 'js-lightbox-mota-page', 'js-lightbox-mota-single'];
     if (in_array($handle, $scripts_with_defer)) {
         return str_replace(' src', ' defer="defer" src', $tag);
     }
@@ -159,3 +160,83 @@ function mota_load_more_single()
 
 add_action('wp_ajax_mota_load_more_single', 'mota_load_more_single');
 add_action('wp_ajax_nopriv_mota_load_more_single', 'mota_load_more_single');
+
+
+// Récupération en Ajax du code HTML des images similaires
+// selon les critère de tri et l'offset de la front-page
+function mota_load_more_page()
+{
+    // Vérification de sécurité
+    if (
+        !isset($_REQUEST['nonce']) or
+        !wp_verify_nonce($_REQUEST['nonce'], 'mota_load_more_page_OK')
+    ) {
+        wp_send_json_error("Vous n’avez pas l’autorisation d’effectuer cette action.", 403);
+    }
+
+    // On vérifie que les paramètres ont bien été envoyés
+    foreach (['categorie', 'format', 'order', 'offset'] as $parameter) {
+        if (!isset($_POST[$parameter])) {
+            wp_send_json_error("Le paramètre $parameter est manquant.", 403);
+        }
+    }
+    
+    // Récupération des données du formulaire en sécurité
+    $categorie = sanitize_text_field($_POST['categorie']);
+    $format = sanitize_text_field($_POST['format']);
+    $order = sanitize_text_field($_POST['order']);
+    $offset = intval($_POST['offset']);
+    
+    // Création des arguments de la WP_Query avec les paramètres AJAX
+    $args = array(
+        'post_type' => 'photo',
+        'posts_per_page' => 2,
+        'orderby' => 'date',
+        'order' => $order,
+        'offset' => $offset,
+    );
+
+    $tax_queries = array();
+    // test de la taxonomie 'format'
+    if ($format != null) {
+        $tax_queries[] = array(
+            'taxonomy' => 'format',
+            'field' => 'slug',
+            'terms' => array ($format),
+        );
+    }
+    // test de la taxonomie 'categorie'
+    if ($categorie != null) {
+        $tax_queries[] = array(
+            'taxonomy' => 'categorie',
+            'field' => 'slug',
+            'terms' => array ($categorie),
+        );
+    }
+    // Ajout des tax_query si besoin
+    if (!empty($tax_queries)) {
+        $args['tax_query'] = $tax_queries;
+    }
+
+    $codeHTML = '';
+
+    $loop = new WP_Query($args);
+    $posttotal = $loop->found_posts;
+
+    while ($loop->have_posts()) : $loop->the_post();
+        ob_start();
+        include 'template_parts/photo_block.php';
+        $codeHTML .= ob_get_clean();
+    endwhile;
+
+    $retourAjax = array(
+        'code' => $codeHTML,
+        'total' =>$posttotal);
+
+    wp_reset_postdata();
+    wp_send_json($retourAjax);
+    wp_die();
+}
+
+add_action('wp_ajax_mota_load_more_page', 'mota_load_more_page');
+add_action('wp_ajax_nopriv_mota_load_more_page', 'mota_load_more_page');

@@ -69,20 +69,7 @@
     width: calc(25% - 16px);
 }
 
-.galerieContainer {
+.photoGallerie {
     width: 80%;
     margin: auto;
-    display: flex;
-    flex-wrap: wrap;
-    column-gap: 16px;
-    row-gap: 16px;
-    padding-bottom: 32px;
-    a {
-        display: flex;
-        width: calc(50% - 8px);
-    }
-    img {
-        aspect-ratio: 1;
-        object-fit: cover;
-    }
 }
