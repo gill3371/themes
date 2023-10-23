@@ -24,18 +24,13 @@ window.onclick = function (event) {
   }
 };
 
-function posttoDisplay(offset, totalposts) {
-  let poststoDisplay = 2;
-  if ((totalposts - offset) < 2) {
-    poststoDisplay = (totalposts - offset);
-  }
-  return poststoDisplay;
-}
-
 function loadmorebuttonDisplay(offset,totalposts) {
-  if (offset == totalposts) {
-      const loadmoresingleButton = document.querySelector(".load-more-page");
+  const loadmoresingleButton = document.querySelector(".load-more-page");
+  if (offset >= totalposts) {
       loadmoresingleButton.style.display = "none";
+    }
+    else {
+    loadmoresingleButton.style.display = "block";
   }
 }
 
@@ -56,8 +51,6 @@ function loadMoreFront () {
     offset: offset,
   };
 
-  console.log(data);
-
   fetch(ajaxurl, {
     method: "POST",
     headers: {
@@ -68,8 +61,6 @@ function loadMoreFront () {
   })
     .then((retourAjax) => retourAjax.json())
     .then((retourAjax) => {
-      console.log(retourAjax['code']);
-      console.log(retourAjax['total']);
       const photoMoreDiv = document.querySelector(".photoMoreBox");
       photoMoreDiv.innerHTML += retourAjax['code'];
       offset = parseInt(offset) + 2;

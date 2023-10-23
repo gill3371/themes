@@ -373,9 +373,6 @@ input:focus, textarea:focus {
   max-height: unset;
   display: flex;
 }
-.photoImg:hover {
-  cursor: pointer;
-}
 
 .contactSection {
   display: flex;

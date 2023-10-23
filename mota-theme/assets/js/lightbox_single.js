@@ -1,41 +1,41 @@
 /* 
     @property {HTMLElement} element
+    @property {String[]} gallery : Liste des images de la Lightbox
+    @property {String} url : URL de l'image affichée
 */
 class Lightbox {
 
   static init() {
-    const photoContent = document.querySelector(".photoContent");
-    photoContent.addEventListener("click", function (e) {
-        if (e.target.closest(".photoImg") || e.target.matches(".card_lightbox")) {
-            e.preventDefault();
-            const photoImg = e.target.closest(".photoImg");
-            if (photoImg) {
-              let refLightbox = document.querySelector(".photoRef");
-              refLightbox = refLightbox.textContent;
-              let catLightbox = document.querySelector(".photoCat");
-              catLightbox = catLightbox.textContent;
-              new Lightbox(photoImg.getAttribute("data-url"),refLightbox,catLightbox);
-            }
-            else {
-              let refLightbox = e.target.parentNode;
-              refLightbox = refLightbox.querySelector(".card_ref")
-              refLightbox = refLightbox.textContent;
-              let catLightbox = e.target.parentNode;
-              catLightbox = catLightbox.querySelector(".card_cat")
-              catLightbox = catLightbox.textContent;
-              new Lightbox(e.target.getAttribute("data-url"),refLightbox,catLightbox);
-            }
-        }
-    });
-  }
 
+    
+    const photoContent = document.querySelector(".photoMoreBox");
+    photoContent.addEventListener("click", function (e) {
+      if (e.target.matches(".card_lightbox")) {
+        const photoGallerieDiv = document.querySelector(".photoMoreBox");
+        const images = Array.from(photoGallerieDiv.querySelectorAll('img[src$=".jpg"]'));
+        const gallery = images.map(image => image.getAttribute('src'));
+        e.preventDefault();
+        let refLightbox = e.target.parentNode;
+        refLightbox = refLightbox.querySelector(".card_ref")
+        refLightbox = refLightbox.textContent;
+        let catLightbox = e.target.parentNode;
+        catLightbox = catLightbox.querySelector(".card_cat")
+        catLightbox = catLightbox.textContent;
+        new Lightbox(e.target.getAttribute("data-url"),refLightbox,catLightbox,gallery);
+      }
+    })
+  }
+    
   /* 
-        @param (url) URL de l'image
-        @param (ref) Référence de l'image
-        @param (cat) Catégorie de l'image
+        @param {String} url : URL de l'image
+        @param {String} ref : Référence de l'image
+        @param {String} cat : Catégorie de l'image
+        @param {String[]} gallery : Liste des images de la Lightbox
+
      */
-  constructor(url,ref,cat) {
+  constructor(url, ref, cat, gallery) {
     this.element = this.buildDOM(url,ref,cat);
+    this.gallery = gallery;
     this.loadImage(url);
     this.onKeyUp = this.onKeyUp.bind(this);
     document.body.appendChild(this.element);
@@ -46,14 +46,17 @@ class Lightbox {
         @param (url) URL de l'image
      */
   loadImage(url) {
+    this.url = null;
     const image = new Image();
     const container = this.element.querySelector(".lightboxContainer");
+    container.innerHTML = '';
     const loader = document.createElement("div");
     loader.classList.add("lightbox_loader");
     container.appendChild(loader);
-    image.onload = function () {
+    image.onload = () => {
       container.removeChild(loader);
       container.appendChild(image);
+      this.url = url;
     };
     image.src = url;
   }
@@ -68,7 +71,7 @@ class Lightbox {
   }
 
   /* 
-        @param {mouseEvent} e Ferme la Lightbox
+        @param {MouseEvent|KeyboardEvent} e Ferme la Lightbox
      */
   close(e) {
     e.preventDefault;
@@ -77,6 +80,33 @@ class Lightbox {
       this.element.parentElement.removeChild(this.element);
     }, 500);
     document.removeEventListener("keyup", this.onKeyUp);
+  }
+
+    /* 
+        @param {MouseEvent|KeyboardEvent} e Affiche l'image précédente
+     */
+  prev(e) {
+    e.preventDefault;
+    let indexImage = this.gallery.findIndex(image => image === this.url);
+    console.log(indexImage);
+    if (indexImage === 0) {
+      indexImage = this.gallery.length;
+    }
+    this.loadImage(this.gallery[indexImage - 1]);
+  }
+
+      /* 
+          @param {MouseEvent|KeyboardEvent} e Affiche l'image suivante
+      */
+  next(e) {
+    e.preventDefault;
+    let indexImage = this.gallery.findIndex(image => image === this.url);
+    console.log(indexImage);
+    if (indexImage === this.gallery.length - 1) {
+      indexImage = -1;
+    }
+    this.loadImage(this.gallery[indexImage + 1]);
+
   }
 
   /* 
@@ -95,9 +125,11 @@ class Lightbox {
     <span class="catLightbox">${cat}</span>
     </div>`;
     dom.querySelector(".closeLightbox").addEventListener("click", this.close.bind(this));
+    dom.querySelector(".prevLightbox").addEventListener("click", this.prev.bind(this));
+    dom.querySelector(".nextLightbox").addEventListener("click", this.next.bind(this));
     return dom;
+    }
   }
-}
 
 Lightbox.init();
 
