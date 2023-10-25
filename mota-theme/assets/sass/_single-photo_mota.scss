@@ -15,12 +15,21 @@
     display: flex;
     align-items: flex-end;
     column-gap: 16px;
+    @media screen and (max-width: 420px) {
+    display: flex;
+    flex-direction: column;
+    }
 }
 
 .photoInfo {
     width: 50%;
     padding-bottom: 14px;
     border-bottom: 1px solid black;
+    @media screen and (max-width: 420px) {
+        padding-top: 16px;
+        width: 100%;
+        order: 2;
+    }
     li {
         padding-top: 14px;
         font-size: 0.875rem;
@@ -35,11 +44,20 @@
     line-height: 3.825rem;
     font-style: italic;
     text-transform: uppercase;
+    @media screen and (max-width: 420px) {
+        font-size: 2.5rem;
+        line-height: 2rem;
+        }
+
 }
 
 .photoImg {
     max-width: 50%;
     height: auto;
+    @media screen and (max-width: 420px) {
+        max-width: 100%;
+    }
+
     img {
         width: 100%;
         max-height: unset;
@@ -62,8 +80,19 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    @media screen and (max-width: 420px) {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        padding-top: 12px;
+        padding-bottom: 12px;
+    }    
     p {
         font-size: 0.875rem;
+        @media screen and (max-width: 420px) {
+            margin-bottom: 8px;;
+        }    
     }
     .contactButton {
         cursor: pointer;
@@ -73,6 +102,9 @@
 .previewBox {
     display: flex;
     flex-direction: column;
+    @media screen and (max-width: 420px) {
+        display: none;
+    }    
 }
 
 .previewImgBox {
@@ -112,6 +144,9 @@
 .photoMore {
     padding-top: 48px;
     border-top: 1px solid black;
+    @media screen  and (max-width: 420px){
+        padding-top: 16px;
+    }
     p {
         font-size: 1.125rem;
         text-transform: uppercase;
@@ -129,10 +164,17 @@
     column-gap: 16px;
     row-gap: 16px;
     padding-bottom: 32px;
+    @media screen  and (max-width: 420px){
+        flex-direction: column;
+        flex-wrap: nowrap;
+    }
     .photoM {
-        max-width: 49%;
+        max-width: 48.5%;
         height: 100%;
         position: relative;
+        @media screen  and (max-width: 700px){
+            max-width: 100%;
+        }
         img {
             display: flex;
             aspect-ratio: 1.5;

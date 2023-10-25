@@ -63,7 +63,7 @@ function loadMoreFront () {
     .then((retourAjax) => {
       const photoMoreDiv = document.querySelector(".photoMoreBox");
       photoMoreDiv.innerHTML += retourAjax['code'];
-      offset = parseInt(offset) + 2;
+      offset = parseInt(offset) + 8;
       photoMoreInfos.setAttribute("data-offset",offset);
       loadmorebuttonDisplay (offset, retourAjax['total']);
       }

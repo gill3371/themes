@@ -101,10 +101,11 @@ footer {
         display: flex;
         column-gap: 2rem;
         list-style-type: none;
-        @media screen and (max-width: $breakpoint_mobile) {
+        @media screen and (max-width: 420px) {
             flex-direction: column;
             align-items: center;
-            row-gap: 2rem;
+            row-gap: 0.5rem;
+            padding-top: 8px;
         }
             li {
                 font-size: 1rem;

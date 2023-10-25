@@ -3,6 +3,11 @@
         margin: auto;
         margin-bottom: 32px;
         cursor: pointer;
+        @media screen  and (max-width: 420px){
+            // font-size: 3rem;
+            margin-bottom: 16px;
+        }
+
     }
 }
 
@@ -14,6 +19,9 @@
         width: 100%;
         height: 700px;
         object-fit: cover;
+        @media screen  and (max-width: 700px){
+            height: 400px;
+        }
     }
     h2 {
         position: absolute;
@@ -25,6 +33,14 @@
         line-height: 5rem;
         -webkit-text-stroke: 3px white;
         -webkit-text-fill-color: transparent;
+        @media screen  and (max-width: 700px){
+            font-size: 4rem;
+        }
+        @media screen  and (max-width: 420px){
+            font-size: 3rem;
+            line-height: 3rem;
+            -webkit-text-stroke: 2px white;
+        }
     }
 }
 
@@ -34,6 +50,10 @@
     display: flex;
     justify-content: space-between;
     padding: 32px 0;
+    @media screen  and (max-width: 420px){
+        flex-direction: column;
+        row-gap: 8px;
+    }
 }
 
 .selectBox {
@@ -41,12 +61,20 @@
     border-radius: 3px;
     padding-right: 8px;
     width: 100%;
+    @media screen  and (max-width: 420px){
+        flex-direction: column;
+    }
 }
 
 .filterCol1, .filterCol2 {
     display: flex;
     justify-content: space-between;
     column-gap: 16px;
+    @media screen  and (max-width: 420px){
+        flex-direction: column;
+        row-gap: 8px;
+        margin: auto;
+    }
     select {
         width: 100%;
         padding: 8px;
@@ -55,7 +83,13 @@
         font-weight: 300;
         text-transform: uppercase;
         border: none;
+        @media screen  and (max-width: 700px){
+            font-size: 0.75rem;
         }
+        @media screen  and (max-width: 420px){
+            font-size: 0.65rem;
+        }
+    }
     select:focus-visible {
         outline: none;
     }
@@ -63,10 +97,16 @@
 
 .filterCol1 {
     width: calc(50% - 8px);
+    @media screen  and (max-width: 420px){
+        width: 50%;
+    }
 }
 
 .filterCol2 {
     width: calc(25% - 16px);
+    @media screen  and (max-width: 420px){
+        width: 50%;
+    }
 }
 
 .photoGallerie {

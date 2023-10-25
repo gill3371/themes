@@ -163,7 +163,7 @@ button {
 .contactModal {
   display: none;
   position: fixed;
-  z-index: 99;
+  z-index: 999;
   left: 0;
   top: 0;
   width: 100%;
@@ -345,11 +345,24 @@ input:focus, textarea:focus {
   align-items: flex-end;
   column-gap: 16px;
 }
+@media screen and (max-width: 420px) {
+  .photoBox {
+    display: flex;
+    flex-direction: column;
+  }
+}
 
 .photoInfo {
   width: 50%;
   padding-bottom: 14px;
   border-bottom: 1px solid black;
+}
+@media screen and (max-width: 420px) {
+  .photoInfo {
+    padding-top: 16px;
+    width: 100%;
+    order: 2;
+  }
 }
 .photoInfo li {
   padding-top: 14px;
@@ -363,10 +376,21 @@ input:focus, textarea:focus {
   font-style: italic;
   text-transform: uppercase;
 }
+@media screen and (max-width: 420px) {
+  .photoTitle {
+    font-size: 2.5rem;
+    line-height: 2rem;
+  }
+}
 
 .photoImg {
   max-width: 50%;
   height: auto;
+}
+@media screen and (max-width: 420px) {
+  .photoImg {
+    max-width: 100%;
+  }
 }
 .photoImg img {
   width: 100%;
@@ -390,8 +414,23 @@ input:focus, textarea:focus {
   justify-content: space-between;
   align-items: center;
 }
+@media screen and (max-width: 420px) {
+  .photoContact {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
+}
 .photoContact p {
   font-size: 0.875rem;
+}
+@media screen and (max-width: 420px) {
+  .photoContact p {
+    margin-bottom: 8px;
+  }
 }
 .photoContact .contactButton {
   cursor: pointer;
@@ -400,6 +439,11 @@ input:focus, textarea:focus {
 .previewBox {
   display: flex;
   flex-direction: column;
+}
+@media screen and (max-width: 420px) {
+  .previewBox {
+    display: none;
+  }
 }
 
 .previewImgBox {
@@ -436,6 +480,11 @@ input:focus, textarea:focus {
   padding-top: 48px;
   border-top: 1px solid black;
 }
+@media screen and (max-width: 420px) {
+  .photoMore {
+    padding-top: 16px;
+  }
+}
 .photoMore p {
   font-size: 1.125rem;
   text-transform: uppercase;
@@ -453,10 +502,21 @@ input:focus, textarea:focus {
   row-gap: 16px;
   padding-bottom: 32px;
 }
+@media screen and (max-width: 420px) {
+  .photoMoreBox {
+    flex-direction: column;
+    flex-wrap: nowrap;
+  }
+}
 .photoMoreBox .photoM {
-  max-width: 49%;
+  max-width: 48.5%;
   height: 100%;
   position: relative;
+}
+@media screen and (max-width: 700px) {
+  .photoMoreBox .photoM {
+    max-width: 100%;
+  }
 }
 .photoMoreBox .photoM img {
   display: flex;
@@ -612,11 +672,12 @@ footer nav ul {
   column-gap: 2rem;
   list-style-type: none;
 }
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 420px) {
   footer nav ul {
     flex-direction: column;
     align-items: center;
-    row-gap: 2rem;
+    row-gap: 0.5rem;
+    padding-top: 8px;
   }
 }
 footer nav ul li {
@@ -633,6 +694,11 @@ footer nav ul li {
   margin-bottom: 32px;
   cursor: pointer;
 }
+@media screen and (max-width: 420px) {
+  .frontpContainer button {
+    margin-bottom: 16px;
+  }
+}
 
 .photoHero {
   display: flex;
@@ -643,6 +709,11 @@ footer nav ul li {
   width: 100%;
   height: 700px;
   object-fit: cover;
+}
+@media screen and (max-width: 700px) {
+  .photoHero img {
+    height: 400px;
+  }
 }
 .photoHero h2 {
   position: absolute;
@@ -655,6 +726,18 @@ footer nav ul li {
   -webkit-text-stroke: 3px white;
   -webkit-text-fill-color: transparent;
 }
+@media screen and (max-width: 700px) {
+  .photoHero h2 {
+    font-size: 4rem;
+  }
+}
+@media screen and (max-width: 420px) {
+  .photoHero h2 {
+    font-size: 3rem;
+    line-height: 3rem;
+    -webkit-text-stroke: 2px white;
+  }
+}
 
 .filterContainer {
   width: 80%;
@@ -663,6 +746,12 @@ footer nav ul li {
   justify-content: space-between;
   padding: 32px 0;
 }
+@media screen and (max-width: 420px) {
+  .filterContainer {
+    flex-direction: column;
+    row-gap: 8px;
+  }
+}
 
 .selectBox {
   border: 1px solid black;
@@ -670,11 +759,23 @@ footer nav ul li {
   padding-right: 8px;
   width: 100%;
 }
+@media screen and (max-width: 420px) {
+  .selectBox {
+    flex-direction: column;
+  }
+}
 
 .filterCol1, .filterCol2 {
   display: flex;
   justify-content: space-between;
   column-gap: 16px;
+}
+@media screen and (max-width: 420px) {
+  .filterCol1, .filterCol2 {
+    flex-direction: column;
+    row-gap: 8px;
+    margin: auto;
+  }
 }
 .filterCol1 select, .filterCol2 select {
   width: 100%;
@@ -685,6 +786,16 @@ footer nav ul li {
   text-transform: uppercase;
   border: none;
 }
+@media screen and (max-width: 700px) {
+  .filterCol1 select, .filterCol2 select {
+    font-size: 0.75rem;
+  }
+}
+@media screen and (max-width: 420px) {
+  .filterCol1 select, .filterCol2 select {
+    font-size: 0.65rem;
+  }
+}
 .filterCol1 select:focus-visible, .filterCol2 select:focus-visible {
   outline: none;
 }
@@ -692,9 +803,19 @@ footer nav ul li {
 .filterCol1 {
   width: calc(50% - 8px);
 }
+@media screen and (max-width: 420px) {
+  .filterCol1 {
+    width: 50%;
+  }
+}
 
 .filterCol2 {
   width: calc(25% - 16px);
+}
+@media screen and (max-width: 420px) {
+  .filterCol2 {
+    width: 50%;
+  }
 }
 
 .photoGallerie {

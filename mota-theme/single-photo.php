@@ -56,7 +56,7 @@
 					$catIdInit = $postCatInit[0]->term_id;
 					$args = array(
 						'post_type' => 'photo',
-						'posts_per_page' => 2,
+						'posts_per_page' => 8,
 						'orderby' => 'title',
 						'order' => 'ASC',
 						'post__not_in' => array(get_the_ID()),

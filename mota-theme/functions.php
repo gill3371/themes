@@ -190,7 +190,7 @@ function mota_load_more_page()
     // Création des arguments de la WP_Query avec les paramètres AJAX
     $args = array(
         'post_type' => 'photo',
-        'posts_per_page' => 2,
+        'posts_per_page' => 8,
         'orderby' => 'date',
         'order' => $order,
         'offset' => $offset,
