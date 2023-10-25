@@ -162,7 +162,7 @@ button {
 }
 .contactModal {
   display: none;
-  position: fixed;
+  position: absolute;
   z-index: 999;
   left: 0;
   top: 0;
@@ -587,8 +587,6 @@ header .nav-header {
   align-items: center;
 }
 header .nav-header .top-header {
-  position: relative;
-  z-index: 5;
   background-color: white;
   width: 100%;
   display: flex;
@@ -633,11 +631,15 @@ header .nav-header nav ul li a {
     width: 100%;
     background-color: black;
   }
+  header .nav-header .top-header {
+    position: fixed;
+    z-index: 99;
+  }
   header .nav-header nav {
     display: none;
   }
   header .nav-header nav.open {
-    position: absolute;
+    position: fixed;
     top: 72px;
     animation: animMenuMobile 500ms ease-out forwards;
     width: 100%;
@@ -646,6 +648,7 @@ header .nav-header nav ul li a {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    z-index: 98;
   }
   header .nav-header nav.open ul {
     display: flex;

@@ -11,8 +11,6 @@ header {
         justify-content: space-between;
         align-items: center;
         .top-header {
-            position: relative;
-            z-index: 5;
             background-color: white;
             width: 100%;
             display: flex;
@@ -59,11 +57,15 @@ header {
                     background-color: black;
                 }
             }
+            .top-header {
+                position: fixed;
+                z-index: 99;    
+            }
             nav {
                 display: none;
             }
             nav.open {
-                position: absolute;
+                position: fixed;
                 top: 72px;
                 animation: animMenuMobile 500ms ease-out forwards;
                 width: 100%;
@@ -72,6 +74,7 @@ header {
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
+                z-index: 98;
                 ul {
                     display: flex;
                     flex-direction: column;
