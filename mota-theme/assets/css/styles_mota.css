@@ -301,8 +301,8 @@ input:focus, textarea:focus {
   position: relative;
 }
 .lightboxContainer img {
-  width: 100%;
-  height: auto;
+  max-width: 100%;
+  max-height: calc(100vh - 120px);
   animation: lightboxIn 350ms;
   padding-top: 50px;
 }
@@ -315,10 +315,10 @@ input:focus, textarea:focus {
 
 .refLightbox, .catLightbox {
   position: absolute;
-  bottom: -85px;
+  bottom: 0px;
   color: white;
   text-transform: uppercase;
-  padding-bottom: 50px;
+  padding-bottom: 40px;
 }
 
 .refLightbox {

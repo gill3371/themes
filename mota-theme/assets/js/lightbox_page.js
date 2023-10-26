@@ -8,7 +8,7 @@ class Lightbox {
   static init() {
 
     
-    const photoContent = document.querySelector(".photoGallerie");
+    const photoContent = document.querySelector(".photoMoreBox");
     photoContent.addEventListener("click", function (e) {
       if (e.target.matches(".card_lightbox")) {
         const photoGallerieDiv = document.querySelector(".photoGallerie");
@@ -21,6 +21,7 @@ class Lightbox {
         let catLightbox = e.target.parentNode;
         catLightbox = catLightbox.querySelector(".card_cat")
         catLightbox = catLightbox.textContent;
+        console.log(catLightbox);
         new Lightbox(e.target.getAttribute("data-url"),refLightbox,catLightbox,gallery);
       }
     })
@@ -49,7 +50,7 @@ class Lightbox {
     this.url = null;
     const image = new Image();
     const container = this.element.querySelector(".lightboxContainer");
-    container.innerHTML = '';
+    container.removeChild(container.lastChild);
     const loader = document.createElement("div");
     loader.classList.add("lightbox_loader");
     container.appendChild(loader);

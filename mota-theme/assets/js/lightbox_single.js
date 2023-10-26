@@ -10,6 +10,7 @@ class Lightbox {
     
     const photoContent = document.querySelector(".photoMoreBox");
     photoContent.addEventListener("click", function (e) {
+      console.log(e);
       if (e.target.matches(".card_lightbox")) {
         const photoGallerieDiv = document.querySelector(".photoMoreBox");
         const images = Array.from(photoGallerieDiv.querySelectorAll('img[src$=".jpg"]'));
@@ -49,7 +50,7 @@ class Lightbox {
     this.url = null;
     const image = new Image();
     const container = this.element.querySelector(".lightboxContainer");
-    container.innerHTML = '';
+    container.removeChild(container.lastChild);
     const loader = document.createElement("div");
     loader.classList.add("lightbox_loader");
     container.appendChild(loader);
